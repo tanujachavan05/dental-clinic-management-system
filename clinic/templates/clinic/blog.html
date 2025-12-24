@@ -1,0 +1,35 @@
+{% extends 'clinic/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="text-center mb-4">
+        🦷 Dental Blog
+    </h2>
+    <p class="text-center text-muted mb-5">
+        Stay updated with our latest news and dental tips!
+    </p>
+
+    <div class="row g-4">
+        {% for blog in blogs %}
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card shadow-sm h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ blog.title }}</h5>
+                    <p class="card-text text-truncate">
+                        {{ blog.content|truncatewords:20 }}
+                    </p>
+                    <div class="mt-auto">
+                        <a href="{% url 'blog_detail' blog.id %}" class="btn btn-primary btn-sm">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No blog posts available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

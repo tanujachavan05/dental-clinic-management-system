@@ -1,0 +1,104 @@
+{% extends 'clinic/base.html' %}
+{% load static %}
+
+{% block title %}Home - DentaCare{% endblock %}
+
+{% block content %}
+
+<!-- 🌟 Hero Banner -->
+<section class="hero-wrap" style="background-image: url('{% static 'images/hero_dental.jpg' %}'); height: 80vh; background-size: cover; background-position: center;">
+  <div class="overlay"></div>
+  <div class="container h-100 d-flex align-items-center justify-content-center">
+    <div class="text-center text-white" data-aos="fade-down">
+      <h1 class="mb-3 display-4 font-weight-bold">Welcome to DentaCare</h1>
+      <p class="lead">Your Smile, Our Passion</p>
+      <a href="#latest-blog" class="btn btn-primary px-4 py-2 mt-3">Explore Blog</a>
+    </div>
+  </div>
+</section>
+
+<!-- 🔷 SVG Wave Divider -->
+<div style="margin-top: -5px;">
+  <svg viewBox="0 0 1440 100"><path fill="#f8f9fa" d="M0,0 C480,100 960,0 1440,100 L1440,00 L0,0 Z"></path></svg>
+</div>
+
+<!-- 📝 Latest Blog Section -->
+<section id="latest-blog" class="ftco-section bg-light pb-2">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-2">
+      <div class="col-md-7 text-center heading-section" data-aos="fade-up">
+        <h2 class="mb-2">📰 Latest Blog</h2>
+        <p>Stay updated with our latest news and articles.</p>
+      </div>
+    </div>
+    <div class="row">
+      {% for blog in blogs %}
+      <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'1' }}00">
+        <div class="blog-entry">
+          <a href="{% url 'blog_detail' blog.id %}" class="block-20" style="background-image: url('{{ blog.image.url }}'); height: 250px;"></a>
+          <div class="text d-block py-3 px-3">
+            <div class="meta">
+              <div><span class="icon-calendar"></span> {{ blog.created_at|date:"F j, Y" }}</div>
+              <div><span class="icon-user"></span> {{ blog.author }}</div>
+            </div>
+            <h3 class="heading mt-2"><a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a></h3>
+            <p>{{ blog.content|truncatewords:20 }}</p>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-md-12 text-center">
+        <p>No blog posts found.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 🧾 Services + Quote Section -->
+<section class="ftco-section pt-4">
+  <div class="container">
+    <div class="row">
+      <!-- Left: Services -->
+      <div class="col-md-6 pr-md-5 py-4 text-white" style="background-color: #2f89fc;" data-aos="fade-right">
+        <h3><span class="icon-lightbulb"></span> DentaCare Services</h3>
+        <p class="mt-3">We offer high-quality dental care with state-of-the-art technology and experienced professionals.</p>
+        <ul class="mt-4">
+          <li><span class="icon-check"></span> Advanced Dental Treatments</li>
+          <li><span class="icon-check"></span> Experienced Dentists</li>
+          <li><span class="icon-check"></span> Patient-Friendly Environment</li>
+        </ul>
+      </div>
+
+      <!-- Right: Quote Form -->
+      <div class="col-md-6 py-4 bg-light" data-aos="fade-left">
+        <h3 class="mb-3"><span class="icon-mail_outline"></span> Get a Free Quote</h3>
+        <form method="post" action="{% url 'get_quote' %}">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <input type="text" name="name" class="form-control" placeholder="Full Name">
+            </div>
+            <div class="col-md-6 form-group">
+              <input type="email" name="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="col-md-6 form-group">
+              <input type="text" name="phone" class="form-control" placeholder="Phone">
+            </div>
+            <div class="col-md-6 form-group">
+              <input type="text" name="website" class="form-control" placeholder="Website">
+            </div>
+            <div class="col-md-12 form-group">
+              <textarea name="message" class="form-control" placeholder="Message"></textarea>
+            </div>
+            <div class="col-md-12 form-group text-right">
+              <input type="submit" value="Request a Quote" class="btn btn-primary px-4 py-2">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

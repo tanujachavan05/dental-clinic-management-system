@@ -1,0 +1,91 @@
+{% extends 'clinic/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+html {
+  scroll-behavior: smooth;
+}
+.hero-wrap {
+  height: 90vh;
+  position: relative;
+}
+.hero-wrap .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+.second-hero-wrap {
+  height: 90vh;
+  position: relative;
+  margin-top: 40px; /* space between two hero sections */
+}
+.second-hero-wrap .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section 1 Start -->
+<section class="hero-wrap" style="background: url('{% static "images/bg_5.jpg" %}') no-repeat center center/cover;">
+    <div class="overlay"></div>
+    <div class="container h-100 d-flex justify-content-center align-items-center">
+        <div class="text-center text-white" data-aos="fade-up">
+            <p class="breadcrumbs mb-2">
+                <span><a href="{% url 'home' %}" style="color: #fff;">Home</a></span>
+                <span style="color: #fff;">/ Services</span>
+            </p>
+            <h1 class="mb-4" style="font-weight: bold;">Our Service Keeps You Smiling</h1>
+            <a href="#services" class="btn btn-primary py-3 px-5 mt-3" style="font-size: 18px;">Explore Services</a>
+        </div>
+    </div>
+</section>
+<!-- Hero Section 1 End -->
+
+<!-- Hero Section 2 Start -->
+<section class="second-hero-wrap" style="background: url('{% static "images/bg_6.jpg" %}') no-repeat center center/cover;">
+    <div class="overlay"></div>
+</section>
+<!-- Hero Section 2 End -->
+
+<!-- Services Section Start -->
+{% if services %}
+<section id="services" class="ftco-section py-5" style="background-color: #f8f9fa;">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7 text-center heading-section ftco-animate" data-aos="fade-up">
+        <h2 class="mb-4">Our Services</h2>
+        <p class="mb-3">
+          We are dedicated to providing you with the best dental services to keep your smile bright and healthy.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      {% for service in services %}
+      <div class="col-md-3 d-flex align-self-stretch ftco-animate mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'1' }}00">
+        <div class="media block-6 services d-block text-center p-4 shadow rounded bg-white">
+          <div class="icon d-flex justify-content-center align-items-center mb-3" style="font-size: 40px; color: #0d6efd;">
+            <span class="{{ service.icon }}"></span>
+          </div>
+          <div class="media-body">
+            <h5 class="heading mb-2">{{ service.title }}</h5>
+            <p>{{ service.description }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+<!-- Services Section End -->
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'clinic/base.html' %} 
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="home-slider owl-carousel">
+  <div class="slider-item bread-item" style="background-image: url('{% static "images/bg_1.jpg" %}'); background-size: cover; background-position: center;">
+    <div class="overlay" style="background: rgba(0, 0, 0, 0.4);"></div>
+    <div class="container" data-scrollax-parent="true">
+      <div class="row slider-text align-items-end" style="min-height: 400px;">
+        <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+          <p class="breadcrumbs" style="color: #fff;">
+            <span class="mr-2"><a href="{% url 'home' %}" style="color: #fff;">Home</a></span> 
+            <span>Contact</span>
+          </p>
+          <h1 class="mb-3" style="color: #fff;">Get in Touch With Us</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Info -->
+<section class="ftco-section contact-section ftco-degree-bg">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-md-12 text-center">
+        <h2 class="heading-section">Contact Information</h2>
+      </div>
+    </div>
+    <div class="row d-flex contact-info mb-5 text-center">
+      <div class="col-md-3">
+        <div class="info bg-light p-4 rounded shadow-sm">
+          <p><strong>Address:</strong><br>198 West 21th Street, Suite 721<br>New York NY 10016</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info bg-light p-4 rounded shadow-sm">
+          <p><strong>Phone:</strong><br><a href="tel://1234567920">+ 1235 2355 98</a></p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info bg-light p-4 rounded shadow-sm">
+          <p><strong>Email:</strong><br><a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info bg-light p-4 rounded shadow-sm">
+          <p><strong>Website:</strong><br><a href="#">yoursite.com</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form & Map -->
+    <div class="row">
+      <div class="col-md-6 mb-5">
+        <form method="post" class="bg-light p-4 p-md-5 contact-form rounded shadow-sm">
+          {% csrf_token %}
+          <div class="form-group mb-3">
+            {{ form.name.label_tag }} {{ form.name }}
+          </div>
+          <div class="form-group mb-3">
+            {{ form.email.label_tag }} {{ form.email }}
+          </div>
+          <div class="form-group mb-3">
+            {{ form.subject.label_tag }} {{ form.subject }}
+          </div>
+          <div class="form-group mb-3">
+            {{ form.message.label_tag }} {{ form.message }}
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5 w-100">
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6 d-flex align-items-stretch">
+        <div class="mapouter w-100 rounded shadow-sm overflow-hidden">
+          <iframe width="100%" height="100%" src="https://maps.google.com/maps?q=new%20york&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="min-height: 400px;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

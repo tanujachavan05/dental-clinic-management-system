@@ -1,0 +1,60 @@
+{% extends 'clinic/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Inline CSS for SVG Divider -->
+<style>
+  .custom-shape-divider-bottom-1713875094 {
+    position: relative;
+    height: 120px;
+    overflow: hidden;
+    line-height: 0;
+  }
+  .custom-shape-divider-bottom-1713875094 svg {
+    position: absolute;
+    display: block;
+    width: calc(133% + 1.3px);
+    height: 121px;
+  }
+  .custom-shape-divider-bottom-1713875094 .shape-fill {
+    fill: #ffffff;
+  }
+</style>
+
+<!-- Hero Section -->
+<section class="position-relative">
+  <img src="{% static 'images/about-banner.png' %}" alt="About Us Banner" class="w-100" style="height: 600px; object-fit: cover; border: 2px solid black;">
+  <div class="position-absolute top-50 start-50 translate-middle text-white text-center"><br><br>
+    <h1 class="display-4 fw-bold">About Our Clinic</h1>
+    <p class="lead">Compassionate care. Beautiful smiles.</p>
+  </div>
+</section>
+
+<!-- SVG Divider -->
+<div class="custom-shape-divider-bottom-1713875094">
+  <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <path d="M985.66,83.29c-67.64,..." class="shape-fill"></path>
+  </svg>
+</div>
+
+<!-- About Content -->
+<section class="container py-5">
+  <div class="row align-items-center">
+    <div class="col-md-6 mb-4">
+      <img src="{% static 'images/about-content.jpg' %}" alt="Clinic Image"  class="img-fluid rounded shadow">
+    </div>
+    <div class="col-md-6">
+      <h2>Who We Are</h2>
+      <p>We are a passionate team of dental professionals committed to providing top-tier oral healthcare. Our clinic combines modern technology with a warm, welcoming environment to give you the best experience possible.</p>
+      <ul>
+        <li>Experienced and caring dentists</li>
+        <li>State-of-the-art equipment</li>
+        <li>Family-friendly clinic</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
